@@ -1,0 +1,28 @@
+"""
+给一个数字，输出一个方阵，对角线、各行和各列的和相等
+"""
+
+def magic_square(n):
+    magic = [[0] * (n) for i in range(n)]
+    row = n - 1
+    col = n // 2
+    magic[row][col] = 1
+
+    for i in range(2, n * n + 1):
+        try_row = (row + 1) % n
+        try_col = (col + 1) % n
+
+        if (magic[try_row][try_col] == 0):
+            row = try_row
+            col = try_col
+        else:
+            row = (row - 1 + n) % n
+
+        magic[row][col] = i
+
+    for x in magic:
+        print(x, sep = " ")
+
+magic_square(3)
+print()
+magic_square(4)
